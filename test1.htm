@@ -536,6 +536,18 @@ function drawChart3_1() {
       .attr("width", width)
       .attr("height", height);
 
+    var x = d3.scaleBand()
+                .rangeRound([0,width])
+                .paddingInner(0.05);
+
+                
+    var y = d3.scaleLinear()
+        .range([height, 0]);
+
+    var xAxis = d3.axisBottom(x);
+    //var yAxis = d3.axisLeft(y).tickFormat(function(d){ return d;});
+    var yAxis = d3.axisLeft(y);
+
     d3.csv("data/posneg.txt", function(error, data) {
         //color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
         data.forEach(function(d) {
